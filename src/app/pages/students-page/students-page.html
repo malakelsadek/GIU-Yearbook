@@ -87,7 +87,7 @@
     @for (s of visibleStudents(); track s.id) {
       <!-- STUDENT CARD GOES HERE -->
 
-      <h2>{{ s.name }}</h2>
+      <app-student-card [student]="s" />
     }
   </div>
 }

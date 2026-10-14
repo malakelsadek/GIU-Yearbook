@@ -1,0 +1,71 @@
+/* =====================================================================
+   FILE: src/app/components/student-card/student-card.css
+   WHAT: Styles for the student card.
+   WHY:  Angular scopes these rules to this component only, so a .card
+         rule here cannot leak into other pages. Colors, fonts and
+         spacing come from the design tokens in src/styles.css.
+   ===================================================================== */
+
+/* The outer link: a white rounded box. An <a> is inline by default, so
+   display: flex lets it hold a column of content. */
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* all cards in a row get the same height */
+  overflow: hidden; /* clips the photo to the rounded corners */
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+/* Hover: the card lifts slightly and gets a shadow. */
+.card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Every portrait gets the same 310 x 246 shape at any card width.
+   object-fit: cover crops the extra part instead of stretching. */
+.card__photo {
+  width: 100%;
+  aspect-ratio: 310 / 246;
+  object-fit: cover;
+}
+
+/* The white text area under the photo. */
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+/* One row: name on the left, arrow on the right. */
+.card__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__name {
+  font: 600 19px/1.2 var(--font-sans);
+}
+
+/* The SVG uses currentColor, so this color paints the arrow. */
+.card__arrow {
+  width: 18px;
+  height: 18px;
+  color: var(--color-red);
+}
+
+.card__meta {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.card__quote {
+  font: italic 400 17px/1.4 var(--font-serif);
+}

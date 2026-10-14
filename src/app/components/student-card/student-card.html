@@ -1,0 +1,30 @@
+<!-- =====================================================================
+     FILE: src/app/components/student-card/student-card.html
+     WHAT: The markup of one student card.
+     WHY:  The whole card is one link, so clicking anywhere opens the
+           student's story. Read it top to bottom like Figure 3 in the lab.
+     ===================================================================== -->
+
+<!-- [routerLink] builds /students/<id>; aria-label names the link for screen readers. -->
+<a class="card" [routerLink]="['/students', student().id]"
+   [attr.aria-label]="'Read the story of ' + student().name">
+
+  <!-- photoSrc() is the placeholder if the real image failed; (error) reports the failure. -->
+  <img class="card__photo" [src]="photoSrc()"
+       [alt]="'Portrait of ' + student().name" loading="lazy"
+       (error)="onImageError()">
+
+  <div class="card__body">
+    <div class="card__heading">
+      <h3 class="card__name">{{ student().name }}</h3>
+      <!-- currentColor lets the CSS color the icon; aria-hidden hides decoration. -->
+      <svg class="card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </div>
+    <p class="card__meta">{{ student().faculty }} · Class of {{ student().classYear }}</p>
+    <p class="card__quote">“{{ student().quote }}”</p>
+  </div>
+</a>
